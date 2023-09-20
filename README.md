@@ -1,2 +1,2 @@
 # MasterCodeInterview
-code interview practice for JavaSCript
+code interview practice using JavaScript
