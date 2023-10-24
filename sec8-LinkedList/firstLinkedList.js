@@ -73,17 +73,36 @@ class LinkedList {
   }
 
   remove(index) {
-    if(this.head === null || index >= this.length) return;
-    if(index === 0) {
-        this.head = this.head.next;
-        this.length--;
-        return this.printList();
+    if (this.head === null || index >= this.length) return;
+    if (index === 0) {
+      this.head = this.head.next;
+      this.length--;
+      return this.printList();
     }
 
     const prevNode = this.traverseToIndex(index - 1);
+    if (index >= this.length - 1) this.tail = prevNode;
     prevNode.next = prevNode.next.next;
     this.length--;
 
+    return this.printList();
+  }
+
+  reverse() {
+    // if(!this.head || !this.head.next) return;
+    if (this.length <= 1) return this.printList();
+
+    let currNode = this.head;
+    this.head = this.tail; 
+    this.tail = currNode;
+
+    let prevNode = null;
+    while (currNode) {
+      const temp = currNode.next;
+      currNode.next = prevNode;
+      prevNode = currNode;
+      currNode = temp;
+    }
     return this.printList();
   }
 
@@ -118,13 +137,14 @@ myLinkedList.prepend(1);
 myLinkedList.insert(1, 2);
 myLinkedList.insert(0, 0);
 myLinkedList.insert(20, 20);
-myLinkedList.remove(2)
-myLinkedList.remove(0)
-myLinkedList.remove(4)
-myLinkedList.remove(4)
-myLinkedList.remove(4)
+myLinkedList.remove(2);
+myLinkedList.remove(0);
+myLinkedList.remove(4);
+myLinkedList.remove(4);
+myLinkedList.remove(4);
+myLinkedList.reverse();
 
 // console.log(myLinkedList);
-// const util = require('util');
+const util = require("util");
 // use util.inspect to show the entire structure when do console.log()
-// console.log(util.inspect(myLinkedList, { showHidden: false, depth: null }));
+console.log(util.inspect(myLinkedList, { showHidden: false, depth: null }));
