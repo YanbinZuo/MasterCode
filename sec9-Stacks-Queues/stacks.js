@@ -48,3 +48,23 @@ console.log(util.inspect(myStack, { showHidden: false, depth: null }));
 //Discord
 //Udemy
 //google
+
+
+
+const Status = () => {
+  const [serial, setSerial] = useState();
+  const [touched, setTouched] = useState(false);
+
+  const handleOnClick = () => {
+    console.log("clicked")
+  }
+
+  return(
+    <WUButton 
+      onclick = {e => handleOnClick()}
+      triggerEvents = {e => console.log("trigger event")}
+    />
+  )
+}
+
+wrapper.find("TextField#status-serial").props.onBlur();
